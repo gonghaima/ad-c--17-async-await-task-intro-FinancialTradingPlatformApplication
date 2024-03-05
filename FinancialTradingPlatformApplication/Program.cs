@@ -1,14 +1,39 @@
 ﻿namespace FinancialTradingPlatformApplication;
 
+using System.Threading;
+
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Console.WriteLine($"Method name: Main, ThreadId {Thread.CurrentThread.ManagedThreadId}");
+        StockMarketTechnicalAnalysisData stockMarketTechnicalAnalysisData = new StockMarketTechnicalAnalysisData("STKZA", new DateTime(2010, 1, 1), new DateTime(2020, 1, 1));
+        DateTime dateTimeBefore = DateTime.Now;
+
+        decimal[] data1 = stockMarketTechnicalAnalysisData.GetOpeningPrices();
+        decimal[] data2 = stockMarketTechnicalAnalysisData.GetClosingPrices();
+        decimal[] data3 = stockMarketTechnicalAnalysisData.GetPriceHighs();
+        decimal[] data4 = stockMarketTechnicalAnalysisData.GetPriceLows();
+
+        DateTime dateTimeAfter = DateTime.Now;
+
+        TimeSpan timeSpan = dateTimeAfter.Subtract(dateTimeBefore);
+
+        Console.WriteLine($"Total time for operations to complete took {timeSpan.Seconds} {(timeSpan.Seconds > 1 ? "seconds" : "second")}");
+
+        DisplayDataOnChart(data1,data2,data3,data4);
+
+        Console.ReadKey();
+    }
+
+    public static void DisplayDataOnChart(decimal[] data1, decimal[] data2, decimal[] data3, decimal[] data4)
+    {
+        //Code goes here to add data to the chart
+        Console.WriteLine("Data is displayed on the chart.");
     }
 }
 
-    public class StockMarketTechnicalAnalysisData
+public class StockMarketTechnicalAnalysisData
     {
         public StockMarketTechnicalAnalysisData(string stockSymbol,DateTime dateTimeStart, DateTime dateTimeEnd)
         { 
