@@ -1,6 +1,7 @@
 ﻿namespace FinancialTradingPlatformApplication;
 
 using System.Threading;
+using System.Collections.Generic;
 
 class Program
 {
@@ -10,10 +11,32 @@ class Program
         StockMarketTechnicalAnalysisData stockMarketTechnicalAnalysisData = new StockMarketTechnicalAnalysisData("STKZA", new DateTime(2010, 1, 1), new DateTime(2020, 1, 1));
         DateTime dateTimeBefore = DateTime.Now;
 
-        decimal[] data1 = stockMarketTechnicalAnalysisData.GetOpeningPrices();
-        decimal[] data2 = stockMarketTechnicalAnalysisData.GetClosingPrices();
-        decimal[] data3 = stockMarketTechnicalAnalysisData.GetPriceHighs();
-        decimal[] data4 = stockMarketTechnicalAnalysisData.GetPriceLows();
+        // Call methods synchronously
+        // decimal[] data1 = stockMarketTechnicalAnalysisData.GetOpeningPrices();
+        // decimal[] data2 = stockMarketTechnicalAnalysisData.GetClosingPrices();
+        // decimal[] data3 = stockMarketTechnicalAnalysisData.GetPriceHighs();
+        // decimal[] data4 = stockMarketTechnicalAnalysisData.GetPriceLows();
+
+        // Call methods asynchronously
+        List<Task<decimal[]>> tasks = new List<Task<decimal[]>>();
+            
+        Task<decimal[]> getOpeningPricesTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetOpeningPrices());
+        Task<decimal[]> getClosingPricesTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetClosingPrices());
+        Task<decimal[]> getPriceHighsTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetPriceHighs());
+        Task<decimal[]> getPriceLowsTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetPriceLows());
+       
+        tasks.Add(getOpeningPricesTask);
+        tasks.Add(getClosingPricesTask);
+        tasks.Add(getPriceHighsTask);
+        tasks.Add(getPriceLowsTask);
+
+        Task.WaitAll(tasks.ToArray());
+
+        decimal[] data1 = tasks[0].Result;
+        decimal[] data2 = tasks[1].Result;
+        decimal[] data3 = tasks[2].Result;
+        decimal[] data4 = tasks[3].Result;
+
 
         DateTime dateTimeAfter = DateTime.Now;
 
