@@ -37,15 +37,15 @@ class Program
 
         // Task.WaitAll(tasks.ToArray());
 
-        decimal[] data1 = tasks[0].Result;
-        decimal[] data2 = tasks[1].Result;
-        decimal[] data3 = tasks[2].Result;
-        decimal[] data4 = tasks[3].Result;
-        decimal[] data5 = tasks[4].Result;
-        decimal[] data6 = tasks[5].Result;
-        decimal[] data7 = tasks[6].Result;
-        decimal[] data8 = tasks[7].Result;
-        decimal[] data9 = tasks[8].Result;
+        // decimal[] data1 = tasks[0].Result;
+        // decimal[] data2 = tasks[1].Result;
+        // decimal[] data3 = tasks[2].Result;
+        // decimal[] data4 = tasks[3].Result;
+        // decimal[] data5 = tasks[4].Result;
+        // decimal[] data6 = tasks[5].Result;
+        // decimal[] data7 = tasks[6].Result;
+        // decimal[] data8 = tasks[7].Result;
+        // decimal[] data9 = tasks[8].Result;
 
 
         DateTime dateTimeAfter = DateTime.Now;
@@ -59,7 +59,7 @@ class Program
         Console.ReadKey();
     }
 
-    public static void DisplayDataOnChart(decimal[] data1, decimal[] data2, decimal[] data3, decimal[] data4)
+    public static void DisplayDataOnChart(decimal[] data1, decimal[] data2, decimal[] data3, decimal[] data4, decimal[] data5, decimal[] data6, decimal[] data7, decimal[] data8, decimal[] data9)
     {
         //Code goes here to add data to the chart
         Console.WriteLine("Data is displayed on the chart.");
