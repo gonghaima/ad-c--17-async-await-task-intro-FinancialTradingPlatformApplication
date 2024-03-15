@@ -12,40 +12,50 @@ class Program
         DateTime dateTimeBefore = DateTime.Now;
 
         // Call methods synchronously
-        decimal[] data1 = stockMarketTechnicalAnalysisData.GetOpeningPrices();
-        decimal[] data2 = stockMarketTechnicalAnalysisData.GetClosingPrices();
-        decimal[] data3 = stockMarketTechnicalAnalysisData.GetPriceHighs();
-        decimal[] data4 = stockMarketTechnicalAnalysisData.GetPriceLows();
-        decimal[] data5 = stockMarketTechnicalAnalysisData.CalculateStockastics();
-        decimal[] data6 = stockMarketTechnicalAnalysisData.CalculateFastMovingAverage();
-        decimal[] data7 = stockMarketTechnicalAnalysisData.CalculateSlowMovingAverage();
-        decimal[] data8 = stockMarketTechnicalAnalysisData.CalculateUpperBoundBollingerBand();
-        decimal[] data9 = stockMarketTechnicalAnalysisData.CalculateLowerBoundBollingerBand();
+        // decimal[] data1 = stockMarketTechnicalAnalysisData.GetOpeningPrices();
+        // decimal[] data2 = stockMarketTechnicalAnalysisData.GetClosingPrices();
+        // decimal[] data3 = stockMarketTechnicalAnalysisData.GetPriceHighs();
+        // decimal[] data4 = stockMarketTechnicalAnalysisData.GetPriceLows();
+        // decimal[] data5 = stockMarketTechnicalAnalysisData.CalculateStockastics();
+        // decimal[] data6 = stockMarketTechnicalAnalysisData.CalculateFastMovingAverage();
+        // decimal[] data7 = stockMarketTechnicalAnalysisData.CalculateSlowMovingAverage();
+        // decimal[] data8 = stockMarketTechnicalAnalysisData.CalculateUpperBoundBollingerBand();
+        // decimal[] data9 = stockMarketTechnicalAnalysisData.CalculateLowerBoundBollingerBand();
 
         // Call methods asynchronously
-        // List<Task<decimal[]>> tasks = new List<Task<decimal[]>>();
+        List<Task<decimal[]>> tasks = new List<Task<decimal[]>>();
             
-        // Task<decimal[]> getOpeningPricesTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetOpeningPrices());
-        // Task<decimal[]> getClosingPricesTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetClosingPrices());
-        // Task<decimal[]> getPriceHighsTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetPriceHighs());
-        // Task<decimal[]> getPriceLowsTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetPriceLows());
+        Task<decimal[]> getOpeningPricesTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetOpeningPrices());
+        Task<decimal[]> getClosingPricesTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetClosingPrices());
+        Task<decimal[]> getPriceHighsTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetPriceHighs());
+        Task<decimal[]> getPriceLowsTask = Task.Run(() => stockMarketTechnicalAnalysisData.GetPriceLows());
+        Task<decimal[]> calculateStockasticsTask = Task.Run(() => stockMarketTechnicalAnalysisData.CalculateStockastics());
+        Task<decimal[]> calculateFastMovingAverageTask = Task.Run(() => stockMarketTechnicalAnalysisData.CalculateFastMovingAverage());
+        Task<decimal[]> calculateSlowMovingAverageTask = Task.Run(() => stockMarketTechnicalAnalysisData.CalculateSlowMovingAverage());
+        Task<decimal[]> calculateUpperBollingerBandTask = Task.Run(() => stockMarketTechnicalAnalysisData.CalculateUpperBoundBollingerBand());
+        Task<decimal[]> calculateLowerBollingerBandTask = Task.Run(() => stockMarketTechnicalAnalysisData.CalculateLowerBoundBollingerBand());
        
-        // tasks.Add(getOpeningPricesTask);
-        // tasks.Add(getClosingPricesTask);
-        // tasks.Add(getPriceHighsTask);
-        // tasks.Add(getPriceLowsTask);
+        tasks.Add(getOpeningPricesTask);
+        tasks.Add(getClosingPricesTask);
+        tasks.Add(getPriceHighsTask);
+        tasks.Add(getPriceLowsTask);
+        tasks.Add(calculateStockasticsTask);
+        tasks.Add(calculateFastMovingAverageTask);
+        tasks.Add(calculateSlowMovingAverageTask);
+        tasks.Add(calculateUpperBollingerBandTask);
+        tasks.Add(calculateLowerBollingerBandTask);
 
-        // Task.WaitAll(tasks.ToArray());
+        Task.WaitAll(tasks.ToArray());
 
-        // decimal[] data1 = tasks[0].Result;
-        // decimal[] data2 = tasks[1].Result;
-        // decimal[] data3 = tasks[2].Result;
-        // decimal[] data4 = tasks[3].Result;
-        // decimal[] data5 = tasks[4].Result;
-        // decimal[] data6 = tasks[5].Result;
-        // decimal[] data7 = tasks[6].Result;
-        // decimal[] data8 = tasks[7].Result;
-        // decimal[] data9 = tasks[8].Result;
+        decimal[] data1 = tasks[0].Result;
+        decimal[] data2 = tasks[1].Result;
+        decimal[] data3 = tasks[2].Result;
+        decimal[] data4 = tasks[3].Result;
+        decimal[] data5 = tasks[4].Result;
+        decimal[] data6 = tasks[5].Result;
+        decimal[] data7 = tasks[6].Result;
+        decimal[] data8 = tasks[7].Result;
+        decimal[] data9 = tasks[8].Result;
 
 
         DateTime dateTimeAfter = DateTime.Now;
